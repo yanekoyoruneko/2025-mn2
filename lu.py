@@ -10,7 +10,6 @@ def lu_decomposition(A):
             U[i, j] = A[i, j] - np.dot(L[i, :i], U[:i, j])
         for j in range(i + 1, N):
             L[j, i] = (A[j, i] - np.dot(L[j, :i], U[:i, i])) / U[i, i]
-
     return L, U
 
 def solve_lu(A, b):

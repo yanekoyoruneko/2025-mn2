@@ -8,15 +8,41 @@ output: sprawozdanie.pdf
 ## Przegląd Projektu
 Projekt implementuje i porównuje różne metody rozwiązywania układów równań liniowych:
 
-1. Metody iteracyjne:
-   - Metoda Jacobiego
-   - Metoda Gaussa-Seidla
+1. **Metody iteracyjne**:
+   - **Metoda Jacobiego**: opiera się na iteracyjnym przekształcaniu układu równań, zakładając przy każdej iteracji, że pozostałe niewiadome pozostają niezmienione.
 
-2. Metoda bezpośrednia:
-   - Rozkład LU
+     Notacja macierzowa:
+     $$
+     \mathbf{x}^{(k+1)} = D^{-1} (\mathbf{b} - (L + U)\mathbf{x}^{(k)})
+     $$
+     gdzie:
+     A = D + L + U,
+
+     D — macierz diagonalna,
+
+     L — macierz dolnotrójkątna (z zerami na diagonali),
+
+     U — macierz górnotrójkątna (z zerami na diagonali).
+
+   - **Metoda Gaussa-Seidla**: ulepszona wersja metody Jacobiego, w której bieżące obliczenia są natychmiast wykorzystywane.
+
+     Notacja macierzowa:
+     $$
+     \mathbf{x}^{(k+1)} = (D + L)^{-1} (\mathbf{b} - U\mathbf{x}^{(k)})
+     $$
+
+2. **Metoda bezpośrednia**:
+   - **Rozkład LU**: polega na rozłożeniu macierzy $A$ na iloczyn macierzy trójkątnych:
+     $$
+     A = LU
+     $$
+     Następnie rozwiązujemy:
+     $$
+     L\mathbf{y} = \mathbf{b}, \quad U\mathbf{x} = \mathbf{y}
+     $$
 
 ## Zadanie A
-Skonstruowano układ trójdiagonalny Ax = b, gdzie:
+Skonstruowano układ Ax = b, gdzie:
 
 - Macierz A ma rozmiar NxN z:
   - a1 = 5 + e (e = 6)
@@ -33,10 +59,10 @@ Zaimplementowano obie metody iteracyjne z kryterium stopu ||residuum|| < 1e-9.
 ---
 ### Wyniki:
 - **Metoda Jacobiego**:
-  - Wymagała ~15 iteracji
+  - Wymagała ~30 iteracji
 
 - **Metoda Gaussa-Seidla**:
-  - Wymagała ~10 iteracji
+  - Wymagała ~15 iteracji
 
 Wykresy zbieżności pokazują stabilny spadek normy residuum dla obu metod.
 
